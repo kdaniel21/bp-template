@@ -1,0 +1,49 @@
+{
+  "name": "bp-template",
+  // REUSE TEMPLATE
+  // "image": "XXX",
+  // ----------------
+  // REBUILD TEMPLATE
+  "build": {
+    "context": "..",
+    "dockerfile": "../Dockerfile",
+  },
+  "runArgs": [
+    "--ipc=host",
+    "--gpus",
+    "\"device=0,1\""
+  ],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=${localEnv:HOME}/.netrc,target=/home/.netrc,type=bind", // Required for WANDB_API_KEY
+    "source=${localEnv:HOME}/.gitconfig,target=/home/.gitconfig,type=bind", // Git credentials
+    "source=${localEnv:HOME}/.cache,target=/home/.cache,type=bind", // Cache
+    "source=${localEnv:HOME}/.bash_history,target=/home/.bash_history,type=bind", // Bash history
+    "source=/scratch2,target=/scratch2,type=bind,ro" // /scratch2 folder
+  ],
+  "remoteEnv": {
+    "WANDB_API_KEY": "${localEnv:WANDB_API_KEY}",
+    "AWS_BEARER_TOKEN_BEDROCK": "${localEnv:AWS_BEARER_TOKEN_BEDROCK}",
+    "CLAUDE_CODE_USE_BEDROCK": "${localEnv:CLAUDE_CODE_USE_BEDROCK}"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "ms-python.vscode-pylance",
+        "github.copilot",
+        "kevinrose.vsc-python-indent",
+        "ms-python.black-formatter",
+        "charliermarsh.ruff",
+        "ms-azuretools.vscode-docker",
+        "jgclark.vscode-todo-highlight",
+        "percy.vscode-pydata-viewer",
+        "njqdev.vscode-python-typehint",
+        "foxundermoon.shell-format",
+        "ms-toolsai.jupyter"
+      ]
+    }
+  }
+}
