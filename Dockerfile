@@ -3,7 +3,7 @@ FROM --platform=linux/amd64 nvidia/cuda:12.9.1-cudnn-devel-ubuntu24.04
 ENV TZ=US \
     DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y git gcc g++ nano parallel curl dvipng wget && apt-get clean
+RUN apt-get update && apt-get install -y git gcc g++ nano parallel curl dvipng wget python3-dev && apt-get clean
 
 ENV CONTAINER_USER=uvser
 RUN useradd -m -s /bin/bash ${CONTAINER_USER} && \
@@ -19,7 +19,7 @@ RUN curl -fsSL https://claude.ai/install.sh | bash
 
 COPY --chown=${CONTAINER_USER}:${CONTAINER_USER} ./uv.lock ./uv.lock
 COPY --chown=${CONTAINER_USER}:${CONTAINER_USER} ./pyproject.toml ./pyproject.toml
-RUN uv venv .venv && \
+RUN uv venv --seed .venv && \
     uv sync
 
 ENV VIRTUAL_ENV="/home/${CONTAINER_USER}/.venv"
