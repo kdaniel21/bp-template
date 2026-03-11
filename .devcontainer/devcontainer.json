@@ -20,6 +20,7 @@
     "source=${localEnv:HOME}/.gitconfig,target=/home/.gitconfig,type=bind", // Git credentials
     "source=${localEnv:HOME}/.cache,target=/home/.cache,type=bind", // Cache
     "source=${localEnv:HOME}/.bash_history,target=/home/.bash_history,type=bind", // Bash history
+    "source=${localEnv:HOME}/.ssh,target=/home/uvser/.ssh,type=bind,ro", // SSH keys
     "source=/scratch2,target=/scratch2,type=bind,ro" // /scratch2 folder
   ],
   "remoteEnv": {
