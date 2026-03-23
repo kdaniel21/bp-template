@@ -7,6 +7,7 @@
   "build": {
     "context": "..",
     "dockerfile": "../Dockerfile",
+    "target": "devcontainer"
   },
   "runArgs": [
     "--ipc=host",
@@ -21,7 +22,7 @@
     "source=${localEnv:HOME}/.cache,target=/home/.cache,type=bind", // Cache
     "source=${localEnv:HOME}/.bash_history,target=/home/.bash_history,type=bind", // Bash history
     "source=${localEnv:HOME}/.ssh,target=/home/uvser/.ssh,type=bind,ro", // SSH keys
-    "source=/scratch2,target=/scratch2,type=bind,ro" // /scratch2 folder
+    "source=/scratch2,target=/scratch2,type=bind,ro", // /scratch2 folder
   ],
   "remoteEnv": {
     "WANDB_API_KEY": "${localEnv:WANDB_API_KEY}",
@@ -43,7 +44,8 @@
         "percy.vscode-pydata-viewer",
         "njqdev.vscode-python-typehint",
         "foxundermoon.shell-format",
-        "ms-toolsai.jupyter"
+        "ms-toolsai.jupyter",
+        "Anthropic.claude-code"
       ]
     }
   }
