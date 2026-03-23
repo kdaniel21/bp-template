@@ -32,8 +32,10 @@ COPY --chown=${CONTAINER_USER}:${CONTAINER_USER} ./uv.lock ./uv.lock
 COPY --chown=${CONTAINER_USER}:${CONTAINER_USER} ./pyproject.toml ./pyproject.toml
 
 RUN uv venv --seed .venv && \
-  uv sync
+  uv sync --no-install-project
 
+# The source files are copied only after installing the dependencies to benefit from caching.
 COPY --chown=${CONTAINER_USER}:${CONTAINER_USER} . .
+RUN uv sync
 
 CMD ["/bin/bash"]
