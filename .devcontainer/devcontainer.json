@@ -33,9 +33,7 @@
     "vscode": {
       "extensions": [
         "ms-python.python",
-        "VisualStudioExptTeam.vscodeintellicode",
         "ms-python.vscode-pylance",
-        "github.copilot",
         "kevinrose.vsc-python-indent",
         "ms-python.black-formatter",
         "charliermarsh.ruff",
@@ -45,7 +43,8 @@
         "njqdev.vscode-python-typehint",
         "foxundermoon.shell-format",
         "ms-toolsai.jupyter",
-        "Anthropic.claude-code"
+        "Anthropic.claude-code",
+        "tamasfe.even-better-toml"
       ]
     }
   }
